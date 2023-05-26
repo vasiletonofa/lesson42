@@ -26,6 +26,10 @@ public class DriversServiceImpl implements DriversService {
     public void addDriver(Driver driver) {
         System.out.println("Cream soferul: " + driver);
 
+        if(driver.experience == 0) {
+            throw new RuntimeException("Nu se accepto soferi fara experienta !");
+        }
+
         try {
             driversRepository.createDriver(driver);
         } catch (SQLException e) {
@@ -59,5 +63,35 @@ public class DriversServiceImpl implements DriversService {
         }
 
         return driver;
+    }
+
+    @Override
+    public List<Driver> getDriverByName(String name) {
+        List<Driver> drivers = new ArrayList<>();
+        try {
+            drivers = driversRepository.findDriverByName(name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return drivers;
+    }
+
+    @Override
+    public void deleteDriverById(Long id) {
+        try {
+            driversRepository.deleteDriverById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateDriver(Driver driver) {
+        try {
+            driversRepository.updateDriver(driver);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

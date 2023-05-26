@@ -13,4 +13,9 @@ public interface DriversRepository {
 
     Driver findDriverById(long id) throws SQLException;
 
+    List<Driver> findDriverByName(String name) throws SQLException;
+
+    void deleteDriverById(Long id) throws SQLException;
+
+    void updateDriver(Driver driver) throws SQLException;
 }

@@ -21,7 +21,7 @@ public class DriverController {
     @Autowired
     DriversService driversService;
 
-    @PostMapping("/TRANSFER")
+    @PostMapping("/driver/add")
     public void createDriver(@RequestBody Driver driver) {
         driversService.addDriver(driver);
     }
